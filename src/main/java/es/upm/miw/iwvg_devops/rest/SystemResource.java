@@ -47,6 +47,6 @@ public class SystemResource {
     @GetMapping(value = CURRENT_TIME)
     public String currentTime() {
         Calendar now = GregorianCalendar.getInstance();
-        return "{\"time\": \"" + String.format("%1$tH:%1$tM:%1$tS", now) + "\"}";
+        return "{\"time\": \"" + String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", now) + "\"}";
     }
 }
