@@ -54,4 +54,15 @@ class SystemResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(body -> assertTrue(body.matches("\\{\"time\": *\"\\d{2}:\\d{2}:\\d{2}\"}")));
     }
+
+    @Test
+    void testRandomInteger() {
+        this.webTestClient
+                .get().uri(SYSTEM + RANDOM_INTEGER)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(Assertions::assertNotNull)
+                .value(body -> assertTrue(body.matches("\\{\"value\": *\"\\d+\"}")));
+    }
 }
