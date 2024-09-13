@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 @RestController
 @RequestMapping(SystemResource.SYSTEM)
 public class SystemResource {
@@ -12,6 +16,7 @@ public class SystemResource {
 
     static final String APP_INFO = "/app-info";
     static final String VERSION_BADGE = "/version-badge";
+    static final String CURRENT_TIME = "/current-time";
 
     @Value("${application.name}")
     private String applicationName;
@@ -29,5 +34,11 @@ public class SystemResource {
     public String applicationInfo() {
         return "{\"version\":\"" + this.applicationName + "::" +
                 this.buildVersion + "::" + this.buildTimestamp + "\"}";
+    }
+
+    @GetMapping(value = CURRENT_TIME)
+    public String currentTime() {
+        Calendar now = GregorianCalendar.getInstance();
+        return "{\"time\": "+String.format("%1$tH:%1$tM:%1$tS", now)+"\"}";
     }
 }
