@@ -43,4 +43,15 @@ class SystemResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(body -> assertEquals(3, body.split("::").length));
     }
+
+    @Test
+    void testCurrentTime() {
+        this.webTestClient
+                .get().uri(SYSTEM + CURRENT_TIME)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(Assertions::assertNotNull)
+                .value(body -> assertTrue(body.matches("\\{\"time\": +\"\\d{2}:\\d{2}:\\d{2}\"}")));
+    }
 }
