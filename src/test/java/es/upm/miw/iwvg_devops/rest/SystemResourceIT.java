@@ -52,7 +52,7 @@ class SystemResourceIT {
                 .expectStatus().isOk()
                 .expectBody(String.class)
                 .value(Assertions::assertNotNull)
-                .value(body -> assertTrue(body.matches("\\{\"time\": *\"\\d{2}:\\d{2}:\\d{2}\"}")));
+                .value(body -> assertTrue(body.matches("\\{\"time\": *\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\"}")));
     }
 
     @Test
